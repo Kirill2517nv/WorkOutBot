@@ -1,0 +1,15 @@
+[Unit]
+Description=WorkOutBot Telegram Bot
+After=network.target
+
+[Service]
+WorkingDirectory=/opt/workoutbot
+ExecStart=/opt/workoutbot/venv/bin/python bot.py
+Restart=always
+RestartSec=5
+EnvironmentFile=/opt/workoutbot/.env
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
