@@ -1,7 +1,6 @@
 import asyncio
 import logging
 
-import aiohttp
 from aiohttp_socks import ProxyConnector
 from aiogram import Bot, Dispatcher
 from aiogram.fsm.storage.memory import MemoryStorage
@@ -22,9 +21,7 @@ async def main():
 
     if PROXY_URL:
         connector = ProxyConnector.from_url(PROXY_URL)
-        http_session = aiohttp.ClientSession(connector=connector)
-        session = AiohttpSession()
-        session._session = http_session
+        session = AiohttpSession(connector=connector)
         bot = Bot(token=BOT_TOKEN, session=session)
         logging.info("Бот запущен через прокси: %s", PROXY_URL)
     else:
