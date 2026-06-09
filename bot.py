@@ -7,7 +7,7 @@ from aiogram.client.session.aiohttp import AiohttpSession
 
 from config import BOT_TOKEN, PROXY_URL
 from database import init_db
-from handlers import start, training, stats
+from handlers import start, training, stats, program
 
 logging.basicConfig(
     level=logging.INFO,
@@ -31,6 +31,7 @@ async def main():
     dp.include_router(start.router)
     dp.include_router(training.router)
     dp.include_router(stats.router)
+    dp.include_router(program.router)
 
     await dp.start_polling(bot, skip_updates=True)
 
